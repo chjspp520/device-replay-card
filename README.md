@@ -31,85 +31,72 @@
 以下是 `device-replay-card` 的 YAML 配置示例。你可以复制并调整到你的 Home Assistant Lovelace 中。
 
 ```yaml
-- type: custom:device-replay-card
-  card_width: 420
-  floorplan_height: 330
-  min_duration_filter: 60 //时长过滤，单位为秒，小于60秒不统计
-  background_image: /local/UI/背景/3D图/关灯背景图1.png
-  background_left: -155
-  background_top: -90
-  background_scale: 138
-  background_color: >-
-    background: #b92b27;
-    background: -webkit-linear-gradient(to right, rgb(185,43, 39), rgb(21, 101, 192));
-    background: linear-gradient(to right, rgb(185,43,39), rgb(21, 101, 192));
-  time_labels_color: "#fff"
-  device_label_color: "#fff"
-  device_label_align: right
-  device_track_height: 15
-  device_track_font-size: 10
-  device_track_bar_wrapper_background: rgba(0,0,0,0.1)
-  floorplan_border: 0px solid rgb(0 0 0 / 0%)
-  energy:
+    type: custom:device-replay-card
+    theme: input_select.theme
+    dark_light_theme: dark,light
+    api_base_url: http://192.168.1.62:5000/replay/api
+    card_width: 400
+    floorplan_height: 410
+    background_image: /local/house/3d_ui2/关灯.png
+    background_left: 0
+    background_top: 0
+    background_scale: 100
+    device_label_align: right
+    device_track_height: 8
+    device_track_font-size: 10
+    energy:
+      entities:
+        - entity: sensor.quan_wu_ri_yong_dian_liang
+          name: 日用电
+          x: 10
+          "y": 290
+          color: "#000000"
+          sensor_background_color: rgba(0, 123, 255, 0.8)
+          unit: kWh
+        - entity: sensor.quanwu_zongglv
+          name: 功 率
+          x: 10
+          "y": 330
+          color: "#ffffff"
+          sensor_background_color: rgba(34, 197, 94, 0.8)
+          unit: W
+    rooms:
+      客厅: "#ea5506"
+      主卧: "#47885e"
+      次卧: "#008899"
+      儿童房: "#0095d9"
+      餐厅: "#eb6ea5"
+      厨房: "#006e54"
+      大卫生间: "#65318e"
+      小卫生间: "#a86965"
     entities:
-      - entity: input_number.dian
-        name: 电力
-        x: 250
-        "y": 380
-        color: "#000000"
-        sensor_background_color: rgba(0, 123, 255, 0.8)
-        unit: W
-      - entity: input_number.qi
-        name: 燃气
-        x: 160
-        "y": 380
-        color: "#ffffff"
-        sensor_background_color: rgba(34, 197, 94, 0.8)
-        unit: m³
-  rooms:
-    客厅: "#ea5506"
-    主卧: "#47885e"
-    次卧: "#D0FAE5"
-    儿童房: "#FFEDD4"
-    餐厅: "#E0E7FF"
-    厨房: transparent
-    大卫生间: "#65318e"
-    小卫生间: "#CBFBF1"
-  entities:
-    - entity: input_boolean.my
-      name: 客厅-大灯
-      room: 客厅
-      image_url: /local/UI/背景/3D图/客厅灯.png
-      x: 0
-      "y": 0
-      image_scale: 138
-      rotation: 0
-      layer: 1
-      color: "#ea5506"
-      on_state: "on"
-    - entity: input_boolean.kt
-      name: 主卧-大灯
-      room: 主卧
-      image_url: /local/UI/背景/3D图/主卧灯.png
-      x: 0
-      "y": 0
-      image_scale: 138
-      rotation: 0
-      layer: 1
-      color: "#47885e"
-      on_state: "on"
-    - entity: input_boolean.fs
-      name: 大卫生间-换气
-      room: 大卫生间
-      image_url: /local/UI/风扇/风扇on.svg
-      x: 390
-      "y": 110
-      rotation: 0
-      image_scale: 10
-      layer: 1
-      color: "#65318e"
-      on_state: "on"
+      - entity: switch.zimi_cn_1069218961_dhkg01_on_p_2_1
+        name: 客厅-玄关灯
+        room: 客厅
+        image_url: /local/house/3d_ui2/玄关on.png
+        x: 0
+        "y": 0
+        image_scale: 100
+        rotation: 0
+        layer: 1
+        color: "#ea5506"
+        on_state: "on"
+      - entity: climate.lumi_cn_875402794_mcn02
+        name: 客厅-空调
+        room: 客厅
+        image_url: /local/house/3d_ui2/空调.png
+        x: 260
+        "y": 300
+        rotation: 90
+        image_scale: 15
+        layer: 2
+        color: "#17b978"
+        on_states:
+          - cool
+          - dry
+          - fan_only
+          - heat
   
-
+```
 
 
